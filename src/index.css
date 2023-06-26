@@ -102,3 +102,96 @@ a:hover {
   font-weight: 600;
   font-size: 1rem;
 }
+
+footer {
+  background-color: #212121;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+/* VAN */
+.vans--container > h1 {
+  margin-left: 2rem;
+}
+
+.van--options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  max-width: 500px;
+}
+
+.vans--options > a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.type--option {
+  background-color: #fde8cd;
+  color: #917e66;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.vans--all {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.van {
+  padding: 1.5rem;
+  max-width: 800px;
+}
+
+.van > img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.van--info {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: 57px;
+}
+
+.van--price--day {
+  font-weight: 100;
+  font-size: 0.8rem;
+  text-align: end;
+}
+
+.van--type {
+  color: white;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+  width: 30%;
+  position: absolute;
+  bottom: 0;
+  user-select: none;
+}
+
+.simple {
+  background-color: #E17654;
+}
+
+.rugged {
+  background-color: #115E59;
+}
+
+.luxury {
+  background-color: black;
+}
