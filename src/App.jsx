@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
@@ -23,6 +22,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/vans" element={<Vans />} />
       </Routes>
+      <footer>©2023 #VANLIFE</footer>
     </BrowserRouter>
   );
 }
