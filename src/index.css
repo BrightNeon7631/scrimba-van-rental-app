@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #FFF7ED;
+}
+
+nav {
+  padding: 2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.nav--home {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.nav--right {
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav--right > a {
+  color: #4D4D4D;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+/* HOME */
+.home--container {
+  color: white;
+  background:
+  linear-gradient(
+    rgba(0, 0, 0, 0.4), 
+    rgba(0, 0, 0, 0.4)
+  ),
+  url(./assets/images/home-hero.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home--content {
+  padding: 2rem;
+}
+
+.home--button {
+  background-color: #FF8C38;
+  color: white;
+  height: 2.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 2.2rem;
+  cursor: pointer;
+}
+
+/* ABOUT */
+.about--img {
+  max-width: 100%;
+}
+
+.about--content {
+  padding: 0 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.about--cta {
+  background-color: #FFCC8D;
+  border-radius: 7px;
+  padding: 1.5rem;
+  margin: 2rem;
+}
+
+.about--cta--button {
+  border: none;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
