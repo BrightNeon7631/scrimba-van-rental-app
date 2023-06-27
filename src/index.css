@@ -8,7 +8,7 @@ body {
   background-color: #FFF7ED;
 }
 
-nav {
+header {
   padding: 2rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -128,7 +128,8 @@ footer {
   max-width: 500px;
 }
 
-.vans--types > a {
+.vans--types > a,
+.van--detail--link > a {
   text-decoration: underline;
   cursor: pointer;
   color: #4D4D4D
@@ -213,7 +214,14 @@ footer {
 }
 
 /* VAN DETAIL */
+.van--detail--link {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-weight: 600;
+}
+
 .van--detail--container {
+  max-width: 1000px;
   padding: 1.7rem;
   display: flex;
   flex-direction: column;
@@ -222,7 +230,6 @@ footer {
 
 .van--detail--img {
   max-width: 100%;
-  margin-top: 2rem;
 }
 
 .van--detail--type {
@@ -245,4 +252,12 @@ footer {
 .van--detail--price > span {
   font-weight: 100;
   font-size: 1.2rem;
+}
+
+.loading {
+  font-family: monospace;
+  font-size: 2rem;
+  position: absolute;
+  top: 40%;
+  left: 40%;
 }
