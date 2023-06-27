@@ -119,7 +119,7 @@ footer {
   margin-left: 2rem;
 }
 
-.van--options {
+.vans--types {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,21 +127,32 @@ footer {
   max-width: 500px;
 }
 
-.vans--options > a {
+.vans--types > a {
   text-decoration: underline;
   cursor: pointer;
+  color: #4D4D4D
 }
 
-.type--option {
+.vans--types > a:hover {
+  color: black;
+}
+
+.type {
   background-color: #fde8cd;
   color: #917e66;
   font-weight: 600;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  user-select: none;
 }
 
-.vans--all {
+.type:hover,
+.selected--type {
+  background-color: #ebc28c;
+}
+
+.vans--list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;

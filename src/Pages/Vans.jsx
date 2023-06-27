@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Van from "../Components/Van";
 
 export default function Vans() {
+    const [vanDataAPI, setVanDataAPI] = useState('');
     const [vanData, setVanData] = useState('');
-    const [types, setTypes] = useState('');
-    console.log(vanData);
-    console.log(types);
+    const [uniqueTypes, setUniqueTypes] = useState('');
+    const [selectedType, setSelectedType] = useState('');
     
     useEffect(() => {
         async function getVans() {
@@ -16,6 +16,7 @@ export default function Vans() {
                     throw res;
                 }
                 const data = await res.json();
+                setVanDataAPI(data.vans);
                 setVanData(data.vans);
             } catch (error) {
                 throw new Error;
@@ -25,8 +26,8 @@ export default function Vans() {
     }, [])
 
     useEffect(() => {
-        vanData && setTypes([...new Set(vanData.map(item => item.type))]);
-    }, [vanData])
+        vanDataAPI && setUniqueTypes([...new Set(vanDataAPI.map(item => item.type))]);
+    }, [vanDataAPI])
 
     const vanElements = vanData && vanData.map((element) => {
         return (
@@ -41,20 +42,38 @@ export default function Vans() {
         );
       });
 
-      const vanTypes = types && types.map((type, index) => {
+      function handleTypeClick(e) {
+        const { id } = e.target;
+        setSelectedType(id);
+        setVanData(vanDataAPI.filter((element) => element.type === id));
+      }
+
+      const vanTypes = uniqueTypes && uniqueTypes.map((type) => {
         return (
-            <div key={index} className="type--option">{type}</div>
-        )
+          <div
+            key={type}
+            id={type}
+            className={`type ${selectedType === type ? 'selected--type' : ''}`}
+            onClick={handleTypeClick}
+          >
+            {type}
+          </div>
+        );
       })
+
+      function clearTypes() {
+        setSelectedType('');
+        setVanData(vanDataAPI);
+      }
 
     return (
       <div className="vans--container">
         <h1>Explore our van options</h1>
-        <div className="vans--options">
+        <div className="vans--types">
           {vanTypes}
-          <a>Clear filters</a>
+          <a onClick={clearTypes}>Clear filters</a>
         </div>
-        <div className="vans--all">{vanElements}</div>
+        <div className="vans--list">{vanElements}</div>
       </div>
-    );
+    )
 }
