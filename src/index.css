@@ -63,7 +63,8 @@ a:hover {
   padding: 2rem;
 }
 
-.home--button {
+.home--button,
+.van--detail--button {
   background-color: #FF8C38;
   color: white;
   height: 2.5rem;
@@ -163,7 +164,11 @@ footer {
   max-width: 800px;
 }
 
-.van > img {
+.van--link {
+  color: black;
+}
+
+.van--link > img {
   max-width: 100%;
   border-radius: 5px;
   margin-bottom: 1rem;
@@ -183,9 +188,9 @@ footer {
   text-align: end;
 }
 
-.van--type {
+.van--type, 
+.van--detail--type {
   color: white;
-  background-color: orange;
   border-radius: 5px;
   padding: 0.5rem;
   text-align: center;
@@ -205,4 +210,39 @@ footer {
 
 .luxury {
   background-color: black;
+}
+
+/* VAN DETAIL */
+.van--detail--container {
+  padding: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.van--detail--img {
+  max-width: 100%;
+  margin-top: 2rem;
+}
+
+.van--detail--type {
+  position: unset;
+  width: 100px;
+  margin-top: 0.3rem;
+}
+
+.van--detail--button {
+  margin-top: 0;
+  height: 2.8rem;
+  font-size: 1.2rem;
+}
+
+.van--detail--price {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.van--detail--price > span {
+  font-weight: 100;
+  font-size: 1.2rem;
 }

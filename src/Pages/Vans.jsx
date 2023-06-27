@@ -19,7 +19,7 @@ export default function Vans() {
                 setVanDataAPI(data.vans);
                 setVanData(data.vans);
             } catch (error) {
-                throw new Error;
+                console.log(error);
             }
         }
         getVans();
@@ -33,6 +33,7 @@ export default function Vans() {
         return (
           <Van
             key={element.id}
+            id={element.id}
             img={element.imageUrl}
             description={element.description}
             name={element.name}
