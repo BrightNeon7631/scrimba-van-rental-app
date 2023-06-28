@@ -49,6 +49,12 @@ a:hover {
   color: black;
 }
 
+.active--link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
+}
+
 footer {
   background-color: #161616;
   color: white;
