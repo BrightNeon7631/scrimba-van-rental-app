@@ -5,6 +5,7 @@ export default function Header() {
       <header>
         <Link className="nav--home" to="/">#VANLIFE</Link>
         <div className="nav--right">
+          <Link to="/host">Host</Link>
           <Link to="/about">About</Link>
           <Link to="/vans">Vans</Link>
         </div>
