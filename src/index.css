@@ -8,6 +8,12 @@ body {
   background-color: #FFF7ED;
 }
 
+.site--layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   padding: 2rem 1.5rem;
   display: flex;
@@ -21,14 +27,16 @@ header {
   color: black;
 }
 
-.nav--right {
+.nav--right,
+.host--layout--nav {
   font-size: 1.2rem;
   text-decoration: none;
   display: flex;
   gap: 1.2rem;
 }
 
-.nav--right > a {
+.nav--right > a,
+.host--layout--nav > a {
   color: #4D4D4D;
 }
 
@@ -39,6 +47,15 @@ a {
 a:hover {
   text-decoration: underline;
   color: black;
+}
+
+footer {
+  background-color: #161616;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
 }
 
 /* HOME */
@@ -103,17 +120,6 @@ a:hover {
   font-weight: 600;
   font-size: 1rem;
 }
-
-footer {
-  background-color: #212121;
-  color: white;
-  padding: 1.5rem;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
 
 /* VAN */
 .vans--container > h1 {
@@ -260,4 +266,9 @@ footer {
   position: absolute;
   top: 40%;
   left: 40%;
+}
+
+/* HOST */
+.host--layout--nav {
+  padding: 2rem 1.5rem;
 }
