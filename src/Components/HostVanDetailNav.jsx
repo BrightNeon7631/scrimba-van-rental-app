@@ -1,35 +1,30 @@
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
-export default function HostNav() {
+export default function HostVanDetailNav() {
     const activeStyle = {
         fontWeight: 'bold',
         textDecoration: 'underline',
         color: '#161616'
     }
     return (
-        <div className="host--layout--nav">
+        <div className="host--layout--nav hostvan--detail--layout--nav">
             <NavLink 
               to='.'
               end
               style={({isActive}) => isActive ? activeStyle : null}
             >
-              Dashboard
+              Details
             </NavLink>
             <NavLink 
-              to='income'
+              to='pricing'
               style={({isActive}) => isActive ? activeStyle : null}
               >
-              Income
+              Pricing
             </NavLink>
             <NavLink 
-              to='vans'
+              to='photos'
               style={({isActive}) => isActive ? activeStyle : null}
-              >Vans
-            </NavLink>
-            <NavLink 
-              to='reviews'
-              style={({isActive}) => isActive ? activeStyle : null}
-              >
-              Reviews
+              >Photos
             </NavLink>
         </div>
     )
