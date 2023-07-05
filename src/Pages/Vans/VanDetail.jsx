@@ -24,12 +24,12 @@ export default function VanDetail() {
     }, [params.id])
 
     const search = location.state?.search || '';
-    console.log(search);
+    const type = location.state?.type || 'all';
 
     return (
         <>
             <div className="van--detail--link">
-                <Link to={`..${search}`} relative="path">← Back to all vans</Link>
+                <Link to={`..${search}`} relative="path">← Back to {type} vans</Link>
             </div>
             {van ? <div className="van--detail--container">
                 <img className="van--detail--img" src={van.imageUrl}/>
