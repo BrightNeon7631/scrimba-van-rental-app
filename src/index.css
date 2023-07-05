@@ -135,20 +135,20 @@ footer {
 
 .vans--types {
   display: flex;
-  justify-content: space-between;
+  gap: 1.5rem;
   align-items: center;
   padding: 0 2rem;
   max-width: 500px;
 }
 
-.vans--types > a,
+.vans--types--clear,
 .van--detail--link > a {
   text-decoration: underline;
   cursor: pointer;
   color: #4D4D4D
 }
 
-.vans--types > a:hover {
+.vans--types--clear:hover {
   color: black;
 }
 
@@ -165,6 +165,8 @@ footer {
 .type:hover,
 .selected--type {
   background-color: #ebc28c;
+  text-decoration: none;
+  color: black;
 }
 
 .vans--list {

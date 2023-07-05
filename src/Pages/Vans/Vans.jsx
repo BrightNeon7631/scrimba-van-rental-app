@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import Van from '../../Components/Van';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Vans() {
-  const [vanDataAPI, setVanDataAPI] = useState('');
   const [vanData, setVanData] = useState('');
   const [uniqueTypes, setUniqueTypes] = useState('');
-  const [selectedType, setSelectedType] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const typeFilter = searchParams.get('type');
 
   useEffect(() => {
     async function getVans() {
@@ -16,7 +18,6 @@ export default function Vans() {
           throw res;
         }
         const data = await res.json();
-        setVanDataAPI(data.vans);
         setVanData(data.vans);
       } catch (error) {
         console.log(error);
@@ -25,14 +26,16 @@ export default function Vans() {
     getVans();
   }, []);
 
+  const displayedVans = (vanData && typeFilter) ? vanData.filter(van => van.type === typeFilter) : vanData;
+
   useEffect(() => {
-    vanDataAPI &&
-      setUniqueTypes([...new Set(vanDataAPI.map((item) => item.type))]);
-  }, [vanDataAPI]);
+    vanData &&
+      setUniqueTypes([...new Set(vanData.map((item) => item.type))]);
+  }, [vanData]);
 
   const vanElements =
-    vanData &&
-    vanData.map((element) => {
+    displayedVans &&
+    displayedVans.map((element) => {
       return (
         <Van
           key={element.id}
@@ -46,12 +49,6 @@ export default function Vans() {
       );
     });
 
-  function handleTypeClick(e) {
-    const { id } = e.target;
-    setSelectedType(id);
-    setVanData(vanDataAPI.filter((element) => element.type === id));
-  }
-
   const vanTypes =
     uniqueTypes &&
     uniqueTypes.map((type) => {
@@ -59,25 +56,25 @@ export default function Vans() {
         <div
           key={type}
           id={type}
-          className={`type ${selectedType === type ? 'selected--type' : ''}`}
-          onClick={handleTypeClick}
+          className={`type ${typeFilter === type ? 'selected--type' : ''}`}
+          onClick={() => setSearchParams({type: `${type}`})}
         >
           {type}
         </div>
       );
     });
 
-  function clearTypes() {
-    setSelectedType('');
-    setVanData(vanDataAPI);
-  }
-
   return (
     <div className="vans--container">
       <h1>Explore our van options</h1>
       <div className="vans--types">
         {vanTypes}
-        <a onClick={clearTypes}>Clear filters</a>
+        {typeFilter && <div
+          className="vans--types--clear"
+          onClick={() => setSearchParams({})}
+          >
+          Clear filters
+        </div>}
       </div>
       <div className="vans--list">{vanElements}</div>
     </div>
