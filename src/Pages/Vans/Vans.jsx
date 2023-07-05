@@ -45,6 +45,7 @@ export default function Vans() {
           name={element.name}
           price={element.price}
           type={element.type}
+          searchState={{search: `?${searchParams.toString()}`}}
         />
       );
     });

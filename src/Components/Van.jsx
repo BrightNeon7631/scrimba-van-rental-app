@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 export default function Van(props) {
     return (
         <div className="van">
-            <Link className='van--link' id={props.id} key={props.id} to={props.id}>
+            <Link
+                className="van--link"
+                id={props.id}
+                key={props.id}
+                to={props.id}
+                state={props.searchState}
+            >
                 <img src={props.img}/>
                 <div className="van--info">
                     <div>{props.name}</div>
