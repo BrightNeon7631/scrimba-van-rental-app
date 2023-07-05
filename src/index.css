@@ -387,3 +387,24 @@ footer {
   height: 100px;
   border-radius: 5px;
 }
+
+/* NOT FOUND */
+.notfound {
+  padding: 2rem;
+}
+
+.notfound--button {
+  background-color: black;
+  height: 3rem;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.notfound--button > a {
+  color: white;
+  text-decoration: none;
+}
