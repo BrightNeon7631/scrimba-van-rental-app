@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import { RiAccountCircleLine } from 'react-icons/ri';
 
 export default function Header() {
     return (
@@ -22,6 +23,12 @@ export default function Header() {
             className={({isActive}) => isActive ? 'active--link' : ''}
           >
             Vans
+          </NavLink>
+          <NavLink 
+            to="/login" 
+            className={({isActive}) => isActive ? 'active--link' : ''}
+          >
+            <RiAccountCircleLine className="icon"/>
           </NavLink>
         </div>
       </header>

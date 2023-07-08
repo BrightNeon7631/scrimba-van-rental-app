@@ -49,6 +49,11 @@ a:hover {
   color: black;
 }
 
+.icon {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
 .active--link {
   font-weight: bold;
   text-decoration: underline;
@@ -407,4 +412,38 @@ footer {
 .notfound--button > a {
   color: white;
   text-decoration: none;
+}
+
+/* LOGIN */
+.login--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login--container > form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.login--container > form > input {
+  border: 1px solid rgba(209, 213, 219);
+  height: 2.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.login--container > form > button {
+  height: 3.4rem;
+  font-size: 1.2rem;
+  background-color: #FF8C38;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
 }
