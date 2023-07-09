@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react";
-import { Link, useParams, Outlet } from "react-router-dom";
+import { 
+    Link, 
+    Outlet, 
+    useLoaderData 
+} from "react-router-dom";
 import HostVanDetailNav from "../../Components/HostVanDetailNav";
+import { getHostVans } from "../../api";
+
+export function loader({ params }) {
+    return getHostVans(params.id);
+}
 
 export default function HostVanDetail() {
-    const params = useParams();
-    const [hostVan, setHostVan] = useState('');
-
-    useEffect(() => {
-        async function getVanData() {
-            try {
-                const res = await fetch(`/api/vans/${params.id}`);
-                if (!res.ok) {
-                    console.log('error fetching data');
-                    throw res;
-                }
-                const data = await res.json();
-                setHostVan(data.vans);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getVanData();
-    }, [params.id])
+    const hostVan = useLoaderData()[0];
 
     return (
         <>
             <div className="van--detail--link">
                 <Link to=".." relative="path">← Back to all vans</Link>
             </div>
-            {hostVan ? <div className="hostvan--detail--container">
+            <div className="hostvan--detail--container">
                 <div className="hostvan--detail">
                     <div className="hostvan--detail--top">
                         <img src={hostVan.imageUrl}/>
@@ -41,7 +31,7 @@ export default function HostVanDetail() {
                     <HostVanDetailNav />
                     <Outlet context={{ hostVan }} />
                 </div>
-            </div> : <h2 className="loading">Loading...</h2>}
+            </div>
         </>
     )
 }
