@@ -5,13 +5,15 @@ import {
 } from "react-router-dom";
 import HostVanDetailNav from "../../Components/HostVanDetailNav";
 import { getHostVans } from "../../api";
+import { requireAuth } from "../../utils";
 
-export function loader({ params }) {
+export async function loader({ params }) {
+    await requireAuth();
     return getHostVans(params.id);
 }
 
 export default function HostVanDetail() {
-    const hostVan = useLoaderData()[0];
+    const hostVan = useLoaderData();
 
     return (
         <>
