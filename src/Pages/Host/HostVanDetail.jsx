@@ -1,7 +1,10 @@
+import { Suspense } from "react";
 import { 
     Link, 
     Outlet, 
-    useLoaderData 
+    useLoaderData,
+    Await,
+    defer
 } from "react-router-dom";
 import HostVanDetailNav from "../../Components/HostVanDetailNav";
 import { getHostVans } from "../../api";
@@ -9,17 +12,16 @@ import { requireAuth } from "../../utils";
 
 export async function loader({ params, request }) {
     await requireAuth(request);
-    return getHostVans(params.id);
+    return defer({ hostVan: getHostVans(params.id) });
 }
 
 export default function HostVanDetail() {
-    const hostVan = useLoaderData();
+    const loaderDataPromise = useLoaderData();
+    console.log(loaderDataPromise);
 
-    return (
-        <>
-            <div className="van--detail--link">
-                <Link to=".." relative="path">← Back to all vans</Link>
-            </div>
+    function renderHostVan(hostVan) {
+        console.log(hostVan);
+        return (
             <div className="hostvan--detail--container">
                 <div className="hostvan--detail">
                     <div className="hostvan--detail--top">
@@ -34,6 +36,19 @@ export default function HostVanDetail() {
                     <Outlet context={{ hostVan }} />
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <>
+            <div className="van--detail--link">
+                <Link to=".." relative="path">← Back to all vans</Link>
+            </div>
+            <Suspense fallback={<h2 className="loading">Loading van...</h2>}>
+                <Await resolve={loaderDataPromise.hostVan}>
+                    {renderHostVan}
+                </Await>
+            </Suspense>
         </>
     )
 }
