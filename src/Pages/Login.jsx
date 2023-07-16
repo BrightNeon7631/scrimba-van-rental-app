@@ -1,73 +1,67 @@
-import { useState } from "react"
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { 
+    useLoaderData, 
+    Form, 
+    redirect, 
+    useActionData, 
+    useNavigation
+} from "react-router-dom";
 import { loginUser } from "../api";
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message");
 }
 
-export default function Login() {
-    const [formData, setFormData] = useState({email: "", password: ""});
-    const [status, setStatus] = useState('idle');
-    const [error, setError] = useState(null);
-    const urlMessage = useLoaderData();
-    const navigate = useNavigate();
+export async function action({ request }) {
+    const formData = await request.formData();
+    const email = formData.get('email');
+    const password = formData.get('password');
+    
+    const pathname = new URL(request.url).searchParams.get("redirectTo") || '/host';
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setFormData(prevState => {
-            return ({
-                ...prevState,
-                [name]: value
-            })
-        })
-    }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-        async function signIn() {
-            setStatus('submitting');
-            setError(null);
-            try {
-                await loginUser(formData);
-                navigate('/host', { replace: true });
-            } catch (err) {
-                setError(err);
-            } finally {
-                setStatus('idle');
-            }
+    try {
+        await loginUser({email, password});
+        localStorage.setItem('loggedIn', true);
+        try {
+            const response = redirect(pathname);
+            response.body = true;
+            return response;
+        } catch (err) {
+            console.log(err);
         }
-        signIn();
+
+    } catch (err) {
+        return err.message;
     }
+}
+
+export default function Login() {
+    const urlMessage = useLoaderData();
+    const errorMessage = useActionData();
+    const status = useNavigation().state;
 
     return (
         <div className="login--container">
             <h1>Sign in to your account</h1>
             {urlMessage ? <h3 className="red">{urlMessage}</h3> : ''}
-            {error ? <h3 className="red">{error.message}</h3> : ''}
-            <form>
+            {errorMessage ? <h3 className="red">{errorMessage}</h3> : ''}
+            <Form method="post" replace>
                 <input 
                     name="email"
                     type="email"
                     placeholder="Enter email address"
-                    onChange={handleChange}
-                    value={formData.email}
                 />
                 <input 
                     name="password"
                     type="password"
                     placeholder="Enter password"
-                    onChange={handleChange}
-                    value={formData.password}
                 />
                 <button 
                     style={status === 'submitting' ? { backgroundColor: 'gray' } : { }} 
                     disabled={status === 'submitting'}
-                    onClick={handleSubmit} 
                     >
                     {status === 'submitting' ? 'Logging in...' : 'Log in'}
                 </button>
-            </form>
+            </Form>
         </div>
     )
 }
