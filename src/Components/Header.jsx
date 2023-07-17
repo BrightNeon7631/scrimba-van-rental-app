@@ -1,7 +1,18 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { RiAccountCircleLine } from 'react-icons/ri';
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  function fakeLogOut() {
+    localStorage.removeItem('loggedIn');
+    navigate('/');
+  }
+
+  function isLoggedIn() {
+    return localStorage.getItem('loggedIn');
+  }
+  
     return (
       <header>
         <Link className="nav--home" to="/">#VANLIFE</Link>
@@ -24,12 +35,13 @@ export default function Header() {
           >
             Vans
           </NavLink>
-          <NavLink 
+          {!isLoggedIn() ? <NavLink 
             to="/login" 
             className={({isActive}) => isActive ? 'active--link' : ''}
           >
             <RiAccountCircleLine className="icon"/>
           </NavLink>
+          : <a className="logout" onClick={fakeLogOut}>Logout</a>}
         </div>
       </header>
     );
