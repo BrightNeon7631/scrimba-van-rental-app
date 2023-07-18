@@ -22,7 +22,6 @@ import NotFound from './Pages/NotFound';
 import Login, { loader as loginLoader, action as loginAction } from './Pages/Login';
 import Error from './Components/Error';
 import { requireAuth } from './utils';
-import './server';
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>

@@ -1,14 +1,24 @@
-import { redirect } from "react-router-dom";
+import { redirect } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './api';
 
-export function requireAuth(request) {
-    const isLoggedIn = localStorage.getItem('loggedIn');
-    const pathname = new URL(request.url).pathname;
+export async function requireAuth(request) {
+  const pathname = new URL(request.url).pathname;
+  let unsub;
 
-    if (!isLoggedIn) {
-        // workaround to fix miragejs error
-        const response = redirect(`/login?message=You must log in first&redirectTo=${pathname}`);
-        response.body = true;
-        throw response;
-    }
-    return null;
+  const authStatePromise = new Promise((resolve) => {
+    unsub = onAuthStateChanged(auth, (user) => {
+      resolve(user);
+    });
+  });
+
+  const user = await authStatePromise;
+  unsub();
+
+  if (!user) {
+    const response = redirect(`/login?message=You must log in first&redirectTo=${pathname}`);
+    throw response;
+  }
+
+  return null;
 }

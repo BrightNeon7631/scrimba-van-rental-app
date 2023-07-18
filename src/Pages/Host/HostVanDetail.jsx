@@ -1,26 +1,24 @@
-import { Suspense } from "react";
+import { Suspense } from 'react';
 import { 
     Link, 
     Outlet, 
-    useLoaderData,
-    Await,
-    defer
-} from "react-router-dom";
-import HostVanDetailNav from "../../Components/HostVanDetailNav";
-import { getHostVans } from "../../api";
-import { requireAuth } from "../../utils";
+    useLoaderData, 
+    Await, 
+    defer 
+} from 'react-router-dom';
+import HostVanDetailNav from '../../Components/HostVanDetailNav';
+import { getVan } from '../../api';
+import { requireAuth } from '../../utils';
 
 export async function loader({ params, request }) {
     await requireAuth(request);
-    return defer({ hostVan: getHostVans(params.id) });
+    return defer({ hostVan: getVan(params.id) });
 }
 
 export default function HostVanDetail() {
     const loaderDataPromise = useLoaderData();
-    console.log(loaderDataPromise);
 
     function renderHostVan(hostVan) {
-        console.log(hostVan);
         return (
             <div className="hostvan--detail--container">
                 <div className="hostvan--detail">

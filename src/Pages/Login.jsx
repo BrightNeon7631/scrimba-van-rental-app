@@ -20,15 +20,7 @@ export async function action({ request }) {
 
     try {
         await loginUser({email, password});
-        localStorage.setItem('loggedIn', true);
-        try {
-            const response = redirect(pathname);
-            response.body = true;
-            return response;
-        } catch (err) {
-            console.log(err);
-        }
-
+        return redirect(pathname);
     } catch (err) {
         return err.message;
     }

@@ -1,37 +1,50 @@
-import { useEffect, useState } from "react";
+import { 
+    useEffect, 
+    useState 
+} from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { getVan } from "../../api";
+import RiseLoader from "react-spinners/RiseLoader";
 
 export default function VanDetail() {
     const params = useParams();
     const location = useLocation();
     const [van, setVan] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function getVanData() {
-            try {
-                const res = await fetch(`/api/vans/${params.id}`);
-                if (!res.ok) {
-                    console.log('error fetching data');
-                    throw res;
-                }
-                const data = await res.json();
-                setVan(data.vans);
-            } catch (error) {
-                console.log(error);
-            }
+      async function loadVan() {
+        setLoading(true);
+        try {
+            const data = await getVan(params.id);
+            setVan(data);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
         }
-        getVanData();
-    }, [params.id])
+      }
+      loadVan();
+    }, [params.id]);
 
     const search = location.state?.search || '';
     const type = location.state?.type || 'all';
+
+    if (loading) {
+        return <RiseLoader className="loading" color="#36d7b7" loading />
+    }
+
+    if (error) {
+        return <h2 className='"error--container'>There was an error: {error.message}</h2>
+    }
 
     return (
         <>
             <div className="van--detail--link">
                 <Link to={`..${search}`} relative="path">← Back to {type} vans</Link>
             </div>
-            {van ? <div className="van--detail--container">
+            <div className="van--detail--container">
                 <img className="van--detail--img" src={van.imageUrl}/>
                 <div className={`van--detail--type ${van.type === 'simple' ? 'simple' : ''} ${van.type === 'rugged' ? 'rugged' : ''} ${van.type === 'luxury' ? 'luxury' : ''}`}>{van.type}</div>
                 <h1>{van.name}</h1>
@@ -40,7 +53,7 @@ export default function VanDetail() {
                     <p>{van.description}</p>
                     <button className="van--detail--button">Rent this van</button>
                 </div>
-            </div> : <h2 className="loading">Loading...</h2>}
+            </div>
         </>
     )
 }

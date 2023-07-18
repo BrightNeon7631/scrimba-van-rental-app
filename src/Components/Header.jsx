@@ -1,17 +1,42 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
 import { RiAccountCircleLine } from 'react-icons/ri';
+import { onAuthStateChanged } from 'firebase/auth';
+import {
+  useEffect,
+  useState
+} from 'react';
+import {
+  NavLink,
+  Link,
+  useNavigate
+} from 'react-router-dom';
+import {
+  logoutUser,
+  auth
+} from '../api';
 
 export default function Header() {
-  const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function fakeLogOut() {
-    localStorage.removeItem('loggedIn');
-    navigate('/');
-  }
+    useEffect(() => {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      });
 
-  function isLoggedIn() {
-    return localStorage.getItem('loggedIn');
-  }
+      return () => {
+        unsub();
+      };
+    }, []);
+
+    const navigate = useNavigate();
+
+    async function logOut() {
+      await logoutUser();
+      navigate('/');
+    }
   
     return (
       <header>
@@ -35,13 +60,13 @@ export default function Header() {
           >
             Vans
           </NavLink>
-          {!isLoggedIn() ? <NavLink 
+          {!isLoggedIn ? <NavLink 
             to="/login" 
             className={({isActive}) => isActive ? 'active--link' : ''}
           >
             <RiAccountCircleLine className="icon"/>
           </NavLink>
-          : <a className="logout" onClick={fakeLogOut}>Logout</a>}
+          : <a className="logout" onClick={logOut}>Logout</a>}
         </div>
       </header>
     );

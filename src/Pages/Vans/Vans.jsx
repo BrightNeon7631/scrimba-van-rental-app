@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
-import Van from '../../Components/Van';
+import { 
+  useEffect, 
+  useState 
+} from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Van from '../../Components/Van';
 import { getVans } from '../../api';
+import RiseLoader from 'react-spinners/RiseLoader';
 
 export default function Vans() {
   const [vanData, setVanData] = useState([]);
@@ -9,7 +13,7 @@ export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+
   const typeFilter = searchParams.get('type');
 
   useEffect(() => {
@@ -28,11 +32,13 @@ export default function Vans() {
     loadVans();
   }, []);
 
-  const displayedVans = (vanData && typeFilter) ? vanData.filter(van => van.type === typeFilter) : vanData;
+  const displayedVans =
+    vanData && typeFilter
+      ? vanData.filter((van) => van.type === typeFilter)
+      : vanData;
 
   useEffect(() => {
-    vanData &&
-      setUniqueTypes([...new Set(vanData.map((item) => item.type))]);
+    vanData && setUniqueTypes([...new Set(vanData.map((item) => item.type))]);
   }, [vanData]);
 
   const vanElements =
@@ -47,7 +53,10 @@ export default function Vans() {
           name={element.name}
           price={element.price}
           type={element.type}
-          searchState={{search: `?${searchParams.toString()}`, type: typeFilter}}
+          searchState={{
+            search: `?${searchParams.toString()}`,
+            type: typeFilter,
+          }}
         />
       );
     });
@@ -60,7 +69,7 @@ export default function Vans() {
           key={type}
           id={type}
           className={`type ${typeFilter === type ? 'selected--type' : ''}`}
-          onClick={() => setSearchParams({type: `${type}`})}
+          onClick={() => setSearchParams({ type: `${type}` })}
         >
           {type}
         </div>
@@ -68,24 +77,28 @@ export default function Vans() {
     });
 
   if (loading) {
-    return <h2 className="loading">Loading...</h2>
-  }  
+    return <RiseLoader className="loading" color="#36d7b7" loading />;
+  }
 
   if (error) {
-    return <h2>There was an error: {error.message}</h2>
-  }  
+    return (
+      <h2 className='"error--container'>There was an error: {error.message}</h2>
+    );
+  }
 
   return (
     <div className="vans--container">
       <h1>Explore our van options</h1>
       <div className="vans--types">
         {vanTypes}
-        {typeFilter && <div
-          className="vans--types--clear"
-          onClick={() => setSearchParams({})}
+        {typeFilter && (
+          <div
+            className="vans--types--clear"
+            onClick={() => setSearchParams({})}
           >
-          Clear filters
-        </div>}
+            Clear filters
+          </div>
+        )}
       </div>
       <div className="vans--list">{vanElements}</div>
     </div>
