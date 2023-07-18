@@ -24,6 +24,7 @@ export default function Dashboard() {
             <HostVan
               key={element.id}
               id={element.id}
+              path={`vans/${element.id}`}
               name={element.name}
               img={element.imageUrl}
               price={element.price}

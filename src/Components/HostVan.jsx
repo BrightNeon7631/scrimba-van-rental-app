@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 export default function HostVan(props) {
     return (
-    <Link className='hostvan--link' key={props.id} to={props.id}>
+    <Link className='hostvan--link' key={props.id} to={props.path}>
         <img src={props.img}/>
         <div className="hostvan--info">
             <div className="hostvan--name">{props.name}</div>

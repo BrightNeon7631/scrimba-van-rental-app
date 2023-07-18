@@ -23,6 +23,7 @@ export default function HostVans() {
         <HostVan
           key={element.id}
           id={element.id}
+          path={element.id}
           name={element.name}
           img={element.imageUrl}
           price={element.price}
