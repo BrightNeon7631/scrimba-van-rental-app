@@ -32,6 +32,7 @@ header {
   font-size: 1.2rem;
   text-decoration: none;
   display: flex;
+  align-items: center;
   gap: 1.2rem;
 }
 
@@ -254,6 +255,7 @@ footer {
 
 .van--detail--img {
   max-width: 100%;
+  border-radius: 5px;
 }
 
 .van--detail--type {
@@ -466,4 +468,59 @@ footer {
 
 .red {
   color: red;
+}
+
+@media only screen and (max-width: 415px) {
+  header {
+    padding: 1rem 0.75rem;
+  }
+
+  .nav--home {
+    font-size: 1.2rem;
+  }
+
+  .nav--right {
+    font-size: 1.1rem;
+  }
+
+  .vans--container > h1, 
+  .hostvans--container > h1 {
+    margin-left: 1rem;
+  }
+
+  .vans--types {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .van--type, 
+  .van--detail--type {
+    width: unset;
+  }
+
+  .van {
+    padding: 1rem;
+  }
+
+  .van--detail--link {
+    margin-left: 1rem;
+  }
+
+  .van--detail--container,
+  .hostvan--detail--container {
+    padding: 1rem;
+  }
+
+  .hostvans--list {
+    padding: 0 1rem;
+  }
+
+  .login--container > form {
+    max-width: 360px;
+  }
+
+  .loading {
+    left: 35%;
+    font-size: 1.5rem;
+  }
 }
