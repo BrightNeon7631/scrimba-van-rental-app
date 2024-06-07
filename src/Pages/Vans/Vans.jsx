@@ -18,6 +18,7 @@ export default function Vans() {
 
   useEffect(() => {
     async function loadVans() {
+      setError(null);
       setLoading(true);
       try {
         const data = await getVans();
@@ -27,7 +28,6 @@ export default function Vans() {
       } finally {
         setLoading(false);
       }
-      setLoading(false);
     }
     loadVans();
   }, []);

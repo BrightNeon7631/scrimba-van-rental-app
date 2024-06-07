@@ -13,7 +13,7 @@ import HostVan from '../../Components/HostVan';
 export async function loader({ request }) {
     await requireAuth(request);
     return defer({ hostVans: getHostVans() });
-  }
+}
 
 export default function Dashboard() {
     const loaderDataPromise = useLoaderData();
@@ -33,7 +33,7 @@ export default function Dashboard() {
         });
     
         return <div className="hostvans--list--dashboard">{hostVanElements}</div>;
-      }
+    }
 
     return (
         <>

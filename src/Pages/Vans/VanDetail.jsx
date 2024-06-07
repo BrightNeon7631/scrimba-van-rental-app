@@ -2,7 +2,11 @@ import {
     useEffect, 
     useState 
 } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { 
+    Link, 
+    useParams, 
+    useLocation 
+} from "react-router-dom";
 import { getVan } from "../../api";
 import RiseLoader from "react-spinners/RiseLoader";
 
@@ -15,6 +19,7 @@ export default function VanDetail() {
 
     useEffect(() => {
       async function loadVan() {
+        setError(null);
         setLoading(true);
         try {
             const data = await getVan(params.id);

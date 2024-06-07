@@ -17,18 +17,19 @@ export default function HostNav() {
             <NavLink 
               to='income'
               style={({isActive}) => isActive ? activeStyle : null}
-              >
+            >
               Income
             </NavLink>
             <NavLink 
               to='vans'
               style={({isActive}) => isActive ? activeStyle : null}
-              >Vans
+            >
+              Vans
             </NavLink>
             <NavLink 
               to='reviews'
               style={({isActive}) => isActive ? activeStyle : null}
-              >
+            >
               Reviews
             </NavLink>
         </div>

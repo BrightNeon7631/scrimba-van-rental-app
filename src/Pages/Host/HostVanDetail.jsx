@@ -40,7 +40,7 @@ export default function HostVanDetail() {
     return (
         <>
             <div className="van--detail--link">
-                <Link to=".." relative="path">← Back to all vans</Link>
+                <Link to="/host/vans">← Back to all vans</Link>
             </div>
             <Suspense fallback={<h2 className="loading">Loading van...</h2>}>
                 <Await resolve={loaderDataPromise.hostVan}>

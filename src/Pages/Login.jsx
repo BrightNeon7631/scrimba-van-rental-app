@@ -50,7 +50,7 @@ export default function Login() {
                 <button 
                     style={status === 'submitting' ? { backgroundColor: 'gray' } : { }} 
                     disabled={status === 'submitting'}
-                    >
+                >
                     {status === 'submitting' ? 'Logging in...' : 'Log in'}
                 </button>
             </Form>
