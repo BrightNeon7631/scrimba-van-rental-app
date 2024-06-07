@@ -1,12 +1,14 @@
-# Scrimba React Router Project: Van Rental App
+# Scrimba React (Router) Project #9: Van Rental App
 
-The goal of this Scrimba course was to create a van rental app using React Router. I did almost all of the challenges and CSS styling on my own (except for static Dashboard, Reviews and Income pages which were provided in the course). Additionally I replaced mock Mirage JS authentication with Firebase, although it's not the best implementation since onAuthStateChanged method is repeated twice as a workaround. Firebase functionalities are limited to fetching hardcoded data and authentication since it wasn't the primary focus of the course. If I were to implement the project from scratch, I'd get rid of loaders and use context to provide auth / firebase related functions and user state to components that need them. A protected route component would check if the user is logged in before redirecting to the relevant page (and redirect to the login page if not).
+The goal of this Scrimba course was to create a van rental app using React Router. I did almost all of the challenges and CSS styling on my own (except for static Dashboard, Reviews and Income pages which were provided in the course). Additionally I replaced mock Mirage JS authentication with Firebase, although it's not the best implementation since onAuthStateChanged method is repeated twice as a workaround. Firebase functionalities are limited to fetching hardcoded data and authentication since it wasn't the primary focus of the course.
+
+If I were to implement the project from scratch, I'd get rid of loaders and use context to provide auth / firebase related functions and user state to components that need them. A protected route component would check if the user is logged in before redirecting to the relevant page (and redirect to the login page if not).
 
 I started this project in late June 2023 and finished it in July 2023.
 
 ## Assignment
 
-[Scrimba - Learn React Router - Van Rental App](https://scrimba.com/learn/reactrouter6)
+[Scrimba - Learn React Router - #9 Van Rental App](https://scrimba.com/learn/reactrouter6)
 
 [This course is also available on YouTube](https://www.youtube.com/watch?v=nDGA3km5He4)
 
@@ -21,7 +23,7 @@ I started this project in late June 2023 and finished it in July 2023.
 
 ## Key Concepts
 
-* Introduction:
+Introduction:
 - Multi-page and single-page apps
 - BrowserRouter & Routes
 - Route, path & element
@@ -29,37 +31,37 @@ I started this project in late June 2023 and finished it in July 2023.
 - Mock Mirage JS server
 - Route Params: useParams()
 
-* Nested Routes:
+Nested Routes:
 - Layout Route & Outlet
 - Relative Paths & Links
 - Index Routes
 - NavLink & Active Styling
 - Outlet Context: context & useOutletContext()
 
-* Search Params & Links
+Search Params & Links:
 - Query Parameters
 - useSearchParams() & filtering the array with the setter function
 - Link state & useLocation()
 - Error handling & 404 page
 
-* Loaders & Errors
+Loaders & Errors:
 - loader & useLoaderData()
 - createBrowserRouter(), createRoutesFromElements() & RouterProvider
 - errorElement & useRouteError: handling errors
 
-* Actions & Protected Routes
+Actions & Protected Routes:
 - Protected Routes: with loaders & without
 - AuthRequired Layout Route & Conditional sending to /login page
 - Navigate, redirect & useNavigate()
 - action function: useActionData(), Form component, FormData interface & request object
 - useNavigation(): state
 
-* Deferred Data:
+Deferred Data:
 - Promises & defer()
 - Await & resolve
 - Suspense & fallback
 
-* Firebase:
+Firebase:
 - Authentication
 - Firestore database
 
@@ -74,8 +76,8 @@ I started this project in late June 2023 and finished it in July 2023.
 
 ## Test account
 
--email: test@test.com
--password: 123456
+- email: test@test.com
+- password: 123456
 
 ## Links
 
