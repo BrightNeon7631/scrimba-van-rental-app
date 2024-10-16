@@ -81,9 +81,7 @@ Firebase:
 
 ## Links
 
-[Live Demo](https://brightneon7631.github.io/scrimba-van-rental-app/)
-
-[My Other Projects](https://brightneon7631.github.io/odin-scrimba-projects/)
+[Live Demo](https://bn7631-scrimba-van-rental-app.pages.dev)
 
 ## Screenshots
 
@@ -109,7 +107,7 @@ Firebase:
 
 ```bash
 # clone repo
-git clone
+git clone https://github.com/BrightNeon7631/scrimba-van-rental-app.git
 
 # install project dependencies
 npm install
