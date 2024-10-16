@@ -14,6 +14,24 @@ body {
   min-height: 100vh;
 }
 
+.home--container,
+.vans--container,
+.hostvans--container,
+.van--detail--container,
+.hostvan--detail--container,
+.login--container,
+.error--container,
+.about--container,
+.host-income,
+.host-dashboard-earnings,
+.host-dashboard-reviews,
+.host-dashboard-vans {
+  max-width: 2200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 header {
   padding: 2rem 1.5rem;
   display: flex;
@@ -113,6 +131,7 @@ footer {
 /* ABOUT */
 .about--img {
   max-width: 100%;
+  padding: 0 1.5rem;
 }
 
 .about--content {
@@ -135,6 +154,11 @@ footer {
   padding: 1rem;
   font-weight: 600;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.about--cta--button:hover {
+  opacity: 90%;
 }
 
 /* VAN */

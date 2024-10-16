@@ -1,4 +1,6 @@
 import Hero from '../assets/images/about-hero.png';
+import { Link } from 'react-router-dom';
+
 export default function About() {
     return (
         <div className="about--container">
@@ -10,7 +12,7 @@ export default function About() {
             </div>
             <div className='about--cta'>
                 <h2>Your destination is waiting.<br></br>Your van is ready.</h2>
-                <button className='about--cta--button'>Explore our vans</button>
+                <Link to='/vans'><button className='about--cta--button'>Explore our vans</button></Link>
             </div>
         </div>
     )
